@@ -3,13 +3,13 @@
 > 更新时间：2026-07-04  
 > 关键词：豆包、Seedream 5.0 Pro、AI 生图、AI 图片编辑、多图层分离、PPT 可视化、商业设计
 
-访问地址：<https://doubaoseedream5pro.cc>
+访问地址：<http://doubaoseedream5pro.cc>
 
 页面入口：
 
-- Landing Page：<https://doubaoseedream5pro.cc/>
-- Waitlist：<https://doubaoseedream5pro.cc/waitlist.html>
-- Sitemap：<https://doubaoseedream5pro.cc/sitemap.xml>
+- Landing Page：<http://doubaoseedream5pro.cc/>
+- Waitlist：<http://doubaoseedream5pro.cc/waitlist.html>
+- Sitemap：<http://doubaoseedream5pro.cc/sitemap.xml>
 
 GSC 说明：仓库已包含 `robots.txt` 和 `sitemap.xml`，可在 Google Search Console 提交站点地图。站点所有权验证需要真实的 `google-site-verification` 验证码；拿到验证码后，把它加到 `index.html` 和 `waitlist.html` 的 `<head>` 即可。
 

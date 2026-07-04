@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://doubaoseedream5pro.cc/sitemap.xml
+Sitemap: http://doubaoseedream5pro.cc/sitemap.xml
