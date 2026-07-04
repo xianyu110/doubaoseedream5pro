@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+.gsc-rpa-profile/
+.gsc-rpa-downloads/
+.gsc-rpa-output/
