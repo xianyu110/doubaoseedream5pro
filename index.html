@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>豆包 Seedream 5.0 Pro | AI 图像创作模型</title>
+  <meta name="description" content="豆包 Seedream 5.0 Pro 模型介绍：交互式精准编辑、多图层分离、高密度信息表达和原生多语种文字生成。">
+  <link rel="canonical" href="https://doubaoseedream5pro.cc/">
+  <meta property="og:title" content="豆包 Seedream 5.0 Pro | AI 图像创作模型">
+  <meta property="og:description" content="Seedream 5.0 Pro 聚焦交互式精准编辑、多图层分离、高密度信息表达和原生多语种文字生成。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://doubaoseedream5pro.cc/">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17211b;
+      --muted: #59645e;
+      --line: #d9dfd8;
+      --paper: #f6f4ed;
+      --panel: #ffffff;
+      --green: #214b3d;
+      --blue: #266fb0;
+      --gold: #c58b2b;
+      --coral: #c85f4d;
+      --shadow: 0 24px 70px rgba(26, 35, 30, .14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(23, 33, 27, .1);
+      background: rgba(246, 244, 237, .92);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,0)),
+        linear-gradient(135deg, var(--green), var(--blue));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.35);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+    .button.primary {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(33, 75, 61, .22);
+    }
+    .button.secondary {
+      border-color: rgba(23, 33, 27, .18);
+      background: rgba(255,255,255,.68);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background: #dfe9e4;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(17, 25, 20, .82) 0%, rgba(17, 25, 20, .55) 43%, rgba(17, 25, 20, .16) 100%),
+        url("https://seed.bytedance.com/images/seedream5_0_lite/case-study-main.webp");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-inner {
+      position: relative;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 86px 0 110px;
+      color: #fff;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #73e0a8;
+      box-shadow: 0 0 0 5px rgba(115, 224, 168, .16);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 22px;
+      font-size: clamp(46px, 8vw, 96px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin-bottom: 32px;
+      color: rgba(255,255,255,.86);
+      font-size: clamp(17px, 2vw, 22px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero .button.secondary {
+      color: #fff;
+      border-color: rgba(255,255,255,.32);
+      background: rgba(255,255,255,.12);
+    }
+
+    .hero-meta {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      width: min(1180px, calc(100% - 32px));
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: rgba(255,255,255,.2);
+      box-shadow: var(--shadow);
+    }
+
+    .meta-item {
+      min-height: 92px;
+      padding: 18px;
+      background: rgba(255,255,255,.88);
+      color: var(--ink);
+    }
+
+    .meta-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .meta-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section { padding: 92px 0; }
+    .section.alt { background: #fff; }
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(260px, .48fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--coral);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: clamp(30px, 4.5vw, 56px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin-bottom: 4px;
+      color: var(--muted);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature {
+      min-height: 245px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 12px 30px rgba(26, 35, 30, .06);
+    }
+
+    .feature-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 800;
+      background: var(--blue);
+    }
+
+    .feature:nth-child(2) .feature-number { background: var(--green); }
+    .feature:nth-child(3) .feature-number { background: var(--gold); }
+    .feature:nth-child(4) .feature-number { background: var(--coral); }
+
+    .feature h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+      line-height: 1.2;
+    }
+
+    .feature p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .visual-stage {
+      position: relative;
+      min-height: 510px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #101b16;
+      box-shadow: var(--shadow);
+    }
+
+    .visual-stage img {
+      width: 100%;
+      height: 100%;
+      min-height: 510px;
+      object-fit: cover;
+      opacity: .9;
+      display: block;
+    }
+
+    .annotation {
+      position: absolute;
+      border: 2px solid #f4d35e;
+      border-radius: 8px;
+      box-shadow: 0 0 0 999px rgba(0,0,0,.08);
+    }
+
+    .annotation.one {
+      left: 9%;
+      top: 10%;
+      width: 42%;
+      height: 33%;
+    }
+
+    .annotation.two {
+      right: 9%;
+      bottom: 10%;
+      width: 35%;
+      height: 28%;
+      border-color: #73e0a8;
+    }
+
+    .label {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(0,0,0,.16);
+      white-space: nowrap;
+    }
+
+    .label.one {
+      left: 10%;
+      top: 8%;
+    }
+
+    .label.two {
+      right: 10%;
+      bottom: 8%;
+    }
+
+    .steps {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .step span {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #e8efe8;
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin-bottom: 5px;
+      font-size: 20px;
+    }
+
+    .step p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .usecase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .usecase {
+      min-height: 212px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .usecase h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .usecase p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .comparison {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(26, 35, 30, .06);
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .cta {
+      padding: 92px 0;
+      background: var(--green);
+      color: #fff;
+    }
+
+    .cta-inner {
+      width: min(960px, calc(100% - 32px));
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta h2 { margin-bottom: 18px; }
+    .cta p {
+      max-width: 720px;
+      margin: 0 auto 28px;
+      color: rgba(255,255,255,.78);
+      font-size: 18px;
+    }
+
+    .cta .button.primary {
+      background: #fff;
+      color: var(--green);
+      box-shadow: none;
+    }
+
+    footer {
+      padding: 34px 0;
+      color: var(--muted);
+      background: #111914;
+    }
+
+    .footer-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .footer-inner a { color: #dce8df; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero { min-height: 100vh; }
+      .hero-inner {
+        padding-top: 70px;
+        padding-bottom: 250px;
+      }
+      .hero-meta { grid-template-columns: repeat(2, 1fr); }
+      .section-head, .workflow { grid-template-columns: 1fr; }
+      .feature-grid, .usecase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 620px) {
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(17, 25, 20, .82) 0%, rgba(17, 25, 20, .55) 55%, rgba(17, 25, 20, .25) 100%),
+          url("https://seed.bytedance.com/images/seedream5_0_lite/case-study-main.webp");
+        background-size: cover;
+        background-position: center;
+      }
+      .hero-inner { padding-bottom: 380px; }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .hero-meta { grid-template-columns: 1fr; }
+      .meta-item { min-height: 78px; }
+      .feature-grid, .usecase-grid { grid-template-columns: 1fr; }
+      .visual-stage, .visual-stage img { min-height: 360px; }
+      .label {
+        white-space: normal;
+        max-width: 190px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="主导航">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Seedream 5.0 Pro">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Seedream 5.0 Pro</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">核心能力</a>
+        <a href="#workflow">工作流</a>
+        <a href="#usecases">场景</a>
+        <a href="#compare">版本关系</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="eyebrow">豆包图像创作模型 5.0 Pro</div>
+      <h1>把 AI 生图推进到可编辑的设计工作流</h1>
+      <p class="hero-copy">Seedream 5.0 Pro 聚焦交互式精准编辑、多图层分离、高密度信息表达和原生多语种文字生成，让广告图、PPT 图解、电商页面与空间设计更接近可交付状态。</p>
+      <div class="hero-actions">
+        <a class="button primary" href="https://doubaoseedream5pro.cc/">访问域名</a>
+        <a class="button secondary" href="#features">了解能力</a>
+      </div>
+    </div>
+    <div class="hero-meta" aria-label="模型亮点">
+      <div class="meta-item">
+        <strong>精准编辑</strong>
+        <span>圈选、箭头、草图都能成为修改指令</span>
+      </div>
+      <div class="meta-item">
+        <strong>拆层设计</strong>
+        <span>文字、物体、版面可按粒度独立处理</span>
+      </div>
+      <div class="meta-item">
+        <strong>信息图解</strong>
+        <span>支持复杂图表、结构页和整页 PPT 画面</span>
+      </div>
+      <div class="meta-item">
+        <strong>多语种</strong>
+        <span>面向跨境海报与本地化视觉素材</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Core capabilities</div>
+            <h2>四个能力决定它是否能进入真实生产</h2>
+          </div>
+          <p>Seedream 5.0 Pro 的重点不是单张图片的惊艳程度，而是生成后能不能继续修改、拆解、排版和交付。</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-number">01</div>
+            <h3>交互式精准编辑</h3>
+            <p>在画面中画箭头、圈选区域或给出草图，模型理解局部意图后完成修改，减少反复重写 Prompt 的成本。</p>
+          </article>
+          <article class="feature">
+            <div class="feature-number">02</div>
+            <h3>多图层分离</h3>
+            <p>可按提示词或框选拆分文字、物体、背景和整块版面，方便拖拽、缩放、替换和二次设计。</p>
+          </article>
+          <article class="feature">
+            <div class="feature-number">03</div>
+            <h3>高密度信息表达</h3>
+            <p>面向精细图表、多层结构、整页 PPT、电商详情页和知识绘本，提升复杂信息的视觉承载能力。</p>
+          </article>
+          <article class="feature">
+            <div class="feature-number">04</div>
+            <h3>原生多语种文字</h3>
+            <p>支持多种语言文字生成，并关注文化语境、排版习惯和字体形态，适合跨境营销和本地化素材。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="workflow">
+      <div class="wrap workflow">
+        <div class="visual-stage" aria-label="Seedream 视觉生成示例">
+          <img src="https://seed.bytedance.com/images/seedream5_0_lite/case-study-main.webp" alt="Seedream 图像创作示例">
+          <div class="annotation one" aria-hidden="true"></div>
+          <div class="annotation two" aria-hidden="true"></div>
+          <div class="label one">圈选局部</div>
+          <div class="label two">拆层再编辑</div>
+        </div>
+        <div>
+          <div class="section-kicker">Workflow</div>
+          <h2>从一句描述，到可继续加工的视觉稿</h2>
+          <div class="steps">
+            <div class="step">
+              <span>1</span>
+              <div>
+                <h3>先生成方向</h3>
+                <p>用一句描述、草图或参考图确定画面结构、主体和风格，不追求一次到位。</p>
+              </div>
+            </div>
+            <div class="step">
+              <span>2</span>
+              <div>
+                <h3>再局部修改</h3>
+                <p>通过圈选、箭头和自然语言修改光影、材质、文字、产品位置和重点区域。</p>
+              </div>
+            </div>
+            <div class="step">
+              <span>3</span>
+              <div>
+                <h3>按图层交付</h3>
+                <p>把文字、主体、背景和版面元素分离，进入 PPT、网页、电商后台或设计工具继续加工。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="usecases">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Use cases</div>
+            <h2>适合高频返工的商业视觉场景</h2>
+          </div>
+          <p>越是需要多轮修改、复杂排版和多版本交付的任务，越能体现可控编辑和拆层的价值。</p>
+        </div>
+        <div class="usecase-grid">
+          <article class="usecase">
+            <h3>广告创意</h3>
+            <p>快速生成活动主视觉、产品海报和社媒素材，并对局部文案、主体和背景做多轮调整。</p>
+          </article>
+          <article class="usecase">
+            <h3>家居设计</h3>
+            <p>基于草图、线稿或房间照片生成效果图，局部替换家具、灯光、墙面和空间风格。</p>
+          </article>
+          <article class="usecase">
+            <h3>PPT 图解</h3>
+            <p>把行业链路、产品架构、课程知识点和报告结论转成结构清晰的可视化页面。</p>
+          </article>
+          <article class="usecase">
+            <h3>电商页面</h3>
+            <p>生成商品卖点图、详情页模块、促销视觉和多版本素材，再拆层进入后续生产。</p>
+          </article>
+          <article class="usecase">
+            <h3>跨境本地化</h3>
+            <p>生成不同语言市场的活动海报、商品图和广告素材，减少多语种排版返工。</p>
+          </article>
+          <article class="usecase">
+            <h3>科普内容</h3>
+            <p>承载复杂图表、多层结构和知识绘本画面，把抽象概念转成更易读的视觉表达。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="compare">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Model context</div>
+            <h2>Seedream 5.0 Lite 与 Pro 的分工</h2>
+          </div>
+          <p>Lite 更强调智能化底座，Pro 更强调专业创作链路。生产评估时应以火山方舟正式模型列表为准。</p>
+        </div>
+        <div class="comparison">
+          <table>
+            <thead>
+              <tr>
+                <th>版本</th>
+                <th>定位</th>
+                <th>典型能力</th>
+                <th>适合场景</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Seedream 5.0 Lite</strong></td>
+                <td>智能图像创作底座</td>
+                <td>深度思考、联网检索、视觉推理、信息可视化、编辑一致性</td>
+                <td>热点海报、知识图解、日常创作、办公学习配图</td>
+              </tr>
+              <tr>
+                <td><strong>Seedream 5.0 Pro</strong></td>
+                <td>专业设计工作流</td>
+                <td>交互式精准编辑、多图层分离、高密度信息表达、原生多语种文字生成</td>
+                <td>广告创意、家居设计、电商详情页、整页 PPT、跨境物料</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="cta-inner">
+        <h2>评估重点：别只看首图，要看能不能改到交付</h2>
+        <p>测试 Seedream 5.0 Pro 时，建议用真实业务素材做多轮编辑：先生成，再圈选，再拆层，再替换文字和版式。能稳定完成这条链路，才是真正的生产力。</p>
+        <a class="button primary" href="README.md">阅读完整文章</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 doubaoseedream5pro.cc</span>
+      <span>资料参考：ByteDance Seed、火山引擎、公开新闻报道</span>
+    </div>
+  </footer>
+</body>
+</html>
