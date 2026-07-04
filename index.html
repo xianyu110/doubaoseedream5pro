@@ -10,6 +10,19 @@
   <meta property="og:description" content="Seedream 5.0 Pro 聚焦交互式精准编辑、多图层分离、高密度信息表达和原生多语种文字生成。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://doubaoseedream5pro.cc/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="豆包 Seedream 5.0 Pro | AI 图像创作模型">
+  <meta name="twitter:description" content="一页看懂 Seedream 5.0 Pro 的模型定位、核心能力、使用场景与 waitlist。">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "豆包 Seedream 5.0 Pro",
+      "url": "https://doubaoseedream5pro.cc/",
+      "description": "豆包 Seedream 5.0 Pro 模型介绍、能力分析与 waitlist。",
+      "inLanguage": "zh-CN"
+    }
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -106,6 +119,12 @@
     .button.secondary {
       border-color: rgba(23, 33, 27, .18);
       background: rgba(255,255,255,.68);
+    }
+
+    .button.dark {
+      background: #111914;
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(17, 25, 20, .18);
     }
 
     .hero {
@@ -463,6 +482,129 @@
 
     tr:last-child td { border-bottom: 0; }
 
+    .waitlist {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(320px, .62fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .waitlist-copy,
+    .waitlist-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(26, 35, 30, .06);
+    }
+
+    .waitlist-copy {
+      padding: 34px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 26px;
+    }
+
+    .waitlist-copy p {
+      max-width: 670px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .waitlist-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .waitlist-point {
+      min-height: 104px;
+      padding: 16px;
+      border-radius: 8px;
+      background: #eef3ef;
+    }
+
+    .waitlist-point strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .waitlist-point span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .waitlist-panel {
+      padding: 26px;
+      background: #17211b;
+      color: #fff;
+    }
+
+    .waitlist-panel h3 {
+      margin-bottom: 8px;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .waitlist-panel p {
+      margin-bottom: 22px;
+      color: rgba(255,255,255,.72);
+    }
+
+    .waitlist-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .waitlist-form label {
+      display: grid;
+      gap: 7px;
+      color: rgba(255,255,255,.8);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .waitlist-form input,
+    .waitlist-form select,
+    .waitlist-form textarea {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+      padding: 11px 12px;
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      font: inherit;
+      outline: none;
+    }
+
+    .waitlist-form textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    .waitlist-form input::placeholder,
+    .waitlist-form textarea::placeholder {
+      color: rgba(255,255,255,.46);
+    }
+
+    .waitlist-form select {
+      color: #fff;
+    }
+
+    .waitlist-form option {
+      color: var(--ink);
+    }
+
+    .form-note {
+      margin-top: 10px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+    }
+
     .cta {
       padding: 92px 0;
       background: var(--green);
@@ -515,8 +657,9 @@
         padding-bottom: 250px;
       }
       .hero-meta { grid-template-columns: repeat(2, 1fr); }
-      .section-head, .workflow { grid-template-columns: 1fr; }
+      .section-head, .workflow, .waitlist { grid-template-columns: 1fr; }
       .feature-grid, .usecase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .waitlist-points { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 620px) {
@@ -536,6 +679,8 @@
       .meta-item { min-height: 78px; }
       .feature-grid, .usecase-grid { grid-template-columns: 1fr; }
       .visual-stage, .visual-stage img { min-height: 360px; }
+      .waitlist-copy,
+      .waitlist-panel { padding: 22px; }
       .label {
         white-space: normal;
         max-width: 190px;
@@ -555,6 +700,7 @@
         <a href="#workflow">工作流</a>
         <a href="#usecases">场景</a>
         <a href="#compare">版本关系</a>
+        <a href="#waitlist">Waitlist</a>
       </div>
     </div>
   </nav>
@@ -565,7 +711,7 @@
       <h1>把 AI 生图推进到可编辑的设计工作流</h1>
       <p class="hero-copy">Seedream 5.0 Pro 聚焦交互式精准编辑、多图层分离、高密度信息表达和原生多语种文字生成，让广告图、PPT 图解、电商页面与空间设计更接近可交付状态。</p>
       <div class="hero-actions">
-        <a class="button primary" href="https://doubaoseedream5pro.cc/">访问域名</a>
+        <a class="button primary" href="#waitlist">加入 Waitlist</a>
         <a class="button secondary" href="#features">了解能力</a>
       </div>
     </div>
@@ -739,11 +885,73 @@
       </div>
     </section>
 
+    <section class="section" id="waitlist">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Waitlist</div>
+            <h2>跟踪 Seedream 5.0 Pro 的上线与实测进展</h2>
+          </div>
+          <p>这个 waitlist 面向想评估图像生成、局部编辑、拆层设计和商业落地的人群。正式 API、价格和控制台入口以火山方舟与官方公告为准。</p>
+        </div>
+        <div class="waitlist">
+          <div class="waitlist-copy">
+            <div>
+              <h3>适合加入的人</h3>
+              <p>如果你关心 AI 设计工作流、PPT 可视化、电商图、跨境素材、本地化海报或家居空间效果图，可以先登记需求，后续用于整理测试清单、Prompt 模板和上线提醒。</p>
+            </div>
+            <div class="waitlist-points">
+              <div class="waitlist-point">
+                <strong>上线提醒</strong>
+                <span>记录官方模型入口、API 状态和 HTTPS 页面更新。</span>
+              </div>
+              <div class="waitlist-point">
+                <strong>实测清单</strong>
+                <span>围绕编辑一致性、文字生成、拆层和复杂版式测试。</span>
+              </div>
+              <div class="waitlist-point">
+                <strong>场景模板</strong>
+                <span>沉淀广告、电商、PPT、家居和跨境素材提示词。</span>
+              </div>
+            </div>
+          </div>
+          <form class="waitlist-panel" action="mailto:hello@doubaoseedream5pro.cc" method="post" enctype="text/plain">
+            <h3>加入 Waitlist</h3>
+            <p>提交你的使用场景。当前是静态站表单，会打开本地邮件客户端；后续可替换为 Formspree、Google Forms 或自建接口。</p>
+            <div class="waitlist-form">
+              <label>
+                邮箱
+                <input type="email" name="email" placeholder="you@example.com" required>
+              </label>
+              <label>
+                关注场景
+                <select name="scenario" required>
+                  <option value="">请选择</option>
+                  <option>广告创意</option>
+                  <option>电商详情页</option>
+                  <option>PPT / 知识可视化</option>
+                  <option>家居与空间设计</option>
+                  <option>跨境多语种素材</option>
+                  <option>API / 产品集成</option>
+                </select>
+              </label>
+              <label>
+                需求备注
+                <textarea name="message" placeholder="你希望 Seedream 5.0 Pro 帮你解决什么问题？"></textarea>
+              </label>
+              <button class="button primary" type="submit">提交需求</button>
+            </div>
+            <div class="form-note">不收集敏感信息。正式收集方案上线前，请勿填写密钥、账号或客户隐私数据。</div>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <section class="cta">
       <div class="cta-inner">
         <h2>评估重点：别只看首图，要看能不能改到交付</h2>
         <p>测试 Seedream 5.0 Pro 时，建议用真实业务素材做多轮编辑：先生成，再圈选，再拆层，再替换文字和版式。能稳定完成这条链路，才是真正的生产力。</p>
-        <a class="button primary" href="README.md">阅读完整文章</a>
+        <a class="button primary" href="waitlist.html">打开 Waitlist 页面</a>
       </div>
     </section>
   </main>

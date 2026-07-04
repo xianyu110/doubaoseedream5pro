@@ -5,6 +5,14 @@
 
 访问地址：<https://doubaoseedream5pro.cc>
 
+页面入口：
+
+- Landing Page：<https://doubaoseedream5pro.cc/>
+- Waitlist：<https://doubaoseedream5pro.cc/waitlist.html>
+- Sitemap：<https://doubaoseedream5pro.cc/sitemap.xml>
+
+GSC 说明：仓库已包含 `robots.txt` 和 `sitemap.xml`，可在 Google Search Console 提交站点地图。站点所有权验证需要真实的 `google-site-verification` 验证码；拿到验证码后，把它加到 `index.html` 和 `waitlist.html` 的 `<head>` 即可。
+
 ## 一句话结论
 
 豆包图像创作模型 **Seedream 5.0 Pro** 是字节跳动 Seedream 系列面向专业创作工作流的一次升级。它的重点不只是“生成更好看的图”，而是把 AI 图像模型往 **可交互编辑、可拆层设计、高密度信息表达、多语种文字生成** 的方向推进，更接近广告设计、家居设计、PPT 图解、电商页面和知识可视化这些真实生产场景。

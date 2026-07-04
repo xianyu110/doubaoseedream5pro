@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seedream 5.0 Pro Waitlist | 豆包图像创作模型</title>
+  <meta name="description" content="加入 Seedream 5.0 Pro waitlist，跟踪豆包图像创作模型上线、API、实测清单与提示词模板。">
+  <link rel="canonical" href="https://doubaoseedream5pro.cc/waitlist.html">
+  <meta property="og:title" content="Seedream 5.0 Pro Waitlist">
+  <meta property="og:description" content="登记你的 Seedream 5.0 Pro 使用场景，跟踪上线、实测和模板更新。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://doubaoseedream5pro.cc/waitlist.html">
+  <style>
+    :root {
+      --ink: #17211b;
+      --muted: #59645e;
+      --line: #d9dfd8;
+      --paper: #f6f4ed;
+      --green: #214b3d;
+      --blue: #266fb0;
+      --gold: #c58b2b;
+      --coral: #c85f4d;
+      --shadow: 0 24px 70px rgba(26, 35, 30, .14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .nav {
+      border-bottom: 1px solid rgba(23, 33, 27, .1);
+      background: rgba(246, 244, 237, .92);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-inner,
+    .wrap,
+    .footer-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,0)),
+        linear-gradient(135deg, var(--green), var(--blue));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.35);
+    }
+
+    .nav a:last-child {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .main {
+      padding: 72px 0 92px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(320px, .64fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .copy,
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(26, 35, 30, .06);
+    }
+
+    .copy {
+      min-height: 560px;
+      padding: clamp(28px, 5vw, 54px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 38px;
+    }
+
+    .kicker {
+      margin-bottom: 14px;
+      color: var(--coral);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0 0 18px;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 690px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .proof div {
+      min-height: 116px;
+      padding: 16px;
+      border-radius: 8px;
+      background: #eef3ef;
+    }
+
+    .proof strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .proof span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .panel {
+      padding: 28px;
+      color: #fff;
+      background: #17211b;
+    }
+
+    .panel h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.18;
+    }
+
+    .panel p {
+      margin: 0 0 22px;
+      color: rgba(255,255,255,.72);
+    }
+
+    .form {
+      display: grid;
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+      padding: 11px 12px;
+      color: #fff;
+      background: rgba(255,255,255,.08);
+      font: inherit;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255,255,255,.46);
+    }
+
+    option { color: var(--ink); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--green);
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .note {
+      margin-top: 12px;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+    }
+
+    footer {
+      padding: 30px 0;
+      color: var(--muted);
+      background: #111914;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-inner a {
+      color: #dce8df;
+    }
+
+    @media (max-width: 880px) {
+      .hero { grid-template-columns: 1fr; }
+      .copy { min-height: auto; }
+      .proof { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav class="nav" aria-label="主导航">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Seedream 5.0 Pro</span>
+        </a>
+        <a href="/">返回首页</a>
+      </div>
+    </nav>
+
+    <main class="main">
+      <div class="wrap hero">
+        <section class="copy">
+          <div>
+            <div class="kicker">Waitlist</div>
+            <h1>订阅 Seedream 5.0 Pro 上线与实测进展</h1>
+            <p class="lead">登记你的使用场景，后续用于整理上线提醒、模型入口、API 观察、Prompt 模板和真实业务测试清单。页面信息以火山方舟与官方公告为准。</p>
+          </div>
+          <div class="proof">
+            <div>
+              <strong>模型上线</strong>
+              <span>跟踪官方 API、控制台、价格和可用地区。</span>
+            </div>
+            <div>
+              <strong>场景实测</strong>
+              <span>评估交互编辑、拆层、文字生成和复杂版式。</span>
+            </div>
+            <div>
+              <strong>素材模板</strong>
+              <span>沉淀广告、电商、PPT、家居和跨境提示词。</span>
+            </div>
+          </div>
+        </section>
+
+        <form class="panel" action="mailto:hello@doubaoseedream5pro.cc" method="post" enctype="text/plain">
+          <h2>加入 Waitlist</h2>
+          <p>当前站点是 GitHub Pages 静态页，表单使用邮件提交。后续可替换为 Google Forms、Formspree 或自建接口。</p>
+          <div class="form">
+            <label>
+              邮箱
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+            <label>
+              角色
+              <select name="role" required>
+                <option value="">请选择</option>
+                <option>设计师</option>
+                <option>运营 / 市场</option>
+                <option>电商卖家</option>
+                <option>产品 / 技术</option>
+                <option>内容创作者</option>
+              </select>
+            </label>
+            <label>
+              使用场景
+              <select name="scenario" required>
+                <option value="">请选择</option>
+                <option>广告创意</option>
+                <option>电商详情页</option>
+                <option>PPT / 知识可视化</option>
+                <option>家居与空间设计</option>
+                <option>跨境多语种素材</option>
+                <option>API / 产品集成</option>
+              </select>
+            </label>
+            <label>
+              需求备注
+              <textarea name="message" placeholder="你最想测试 Seedream 5.0 Pro 的哪类能力？"></textarea>
+            </label>
+            <button class="button" type="submit">提交需求</button>
+          </div>
+          <div class="note">不要填写密钥、客户数据、内部链接或其他敏感信息。</div>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 doubaoseedream5pro.cc</span>
+        <a href="/sitemap.xml">Sitemap</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
