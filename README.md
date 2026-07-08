@@ -1,134 +1,88 @@
-# 豆包 Seedream 5.0 Pro：从“会画图”到“会改稿”的图像创作模型
+# Seedream 5.0 Pro Waitlist MVP
 
-> 更新时间：2026-07-04  
-> 关键词：豆包、Seedream 5.0 Pro、AI 生图、AI 图片编辑、多图层分离、PPT 可视化、商业设计
+Updated: 2026-07-08<br>
+Canonical site: <https://doubaoseedream5pro.cc/>
 
-访问地址：<http://doubaoseedream5pro.cc>
+This repository hosts a static GitHub Pages MVP for the keyword **Seedream 5.0 Pro**. The site is intentionally built as a demand-validation page: a polished product experience, a simulated private queue, and a real waitlist-intent capture flow that can later be connected to a backend form endpoint.
 
-页面入口：
+## Live pages
 
-- Landing Page：<http://doubaoseedream5pro.cc/>
-- Waitlist：<http://doubaoseedream5pro.cc/waitlist.html>
-- Sitemap：<http://doubaoseedream5pro.cc/sitemap.xml>
+- Landing page: <https://doubaoseedream5pro.cc/>
+- Waitlist page: <https://doubaoseedream5pro.cc/waitlist.html>
+- Sitemap: <https://doubaoseedream5pro.cc/sitemap.xml>
+- Robots: <https://doubaoseedream5pro.cc/robots.txt>
 
-GSC 说明：仓库已包含 `robots.txt` 和 `sitemap.xml`，可在 Google Search Console 提交站点地图。站点所有权验证需要真实的 `google-site-verification` 验证码；拿到验证码后，把它加到 `index.html` 和 `waitlist.html` 的 `<head>` 即可。
+## MVP strategy
 
-## 一句话结论
+The product surface follows a three-hour MVP pattern:
 
-豆包图像创作模型 **Seedream 5.0 Pro** 是字节跳动 Seedream 系列面向专业创作工作流的一次升级。它的重点不只是“生成更好看的图”，而是把 AI 图像模型往 **可交互编辑、可拆层设计、高密度信息表达、多语种文字生成** 的方向推进，更接近广告设计、家居设计、PPT 图解、电商页面和知识可视化这些真实生产场景。
+1. **Richer design and experience**: the homepage looks like a real AI creative product, with a hero workspace, capability cards, queue panel, source notes, FAQ, and waitlist CTA.
+2. **Fake queue**: the site simulates queue position and wait time in the browser. It does not pretend to generate images.
+3. **Real intent capture**: form submissions are stored in browser `localStorage` and opened as an email draft via `mailto:`. For production, replace the form action with Supabase, Formspree, Airtable, Google Forms, or a serverless API endpoint.
 
-如果说 Seedream 5.0 Lite 的核心价值是“理解更强、能联网检索、能做知识推理”，那么 Seedream 5.0 Pro 更像是把这些能力推向专业设计端：用户不必一次性写出完美 Prompt，而是可以通过圈选、箭头、草图、线稿和自然语言持续修改图像。
+This keeps the MVP honest: the user sees demand pressure and can join the waitlist, while the project collects a useful signal before building a full generation backend.
 
-## 背景：Seedream 5.0 系列在解决什么问题
+## What the site says about Seedream 5.0 Pro
 
-传统 AI 生图模型常见的问题有三个：
+The site positions Seedream 5.0 Pro around the creative workflow areas users are likely to evaluate:
 
-1. 生成漂亮，但不一定能按意图改。
-2. 单张图还行，复杂图表、整页 PPT、商品详情页等高信息密度画面容易失控。
-3. 图片里的文字、版式和多语言排版经常出错，难以直接用于商业物料。
+- prompt-based image creation and editing
+- interactive/local editing workflows
+- layer-style production handoff
+- dense visual layouts such as ads, e-commerce pages, diagrams, and slide-like pages
+- multilingual creative assets
 
-Seedream 5.0 系列的迭代方向正是补这些短板。ByteDance Seed 在 Seedream 5.0 Lite 发布文中强调，新模型在理解、推理和生成方面全面提升，并首次引入实时检索增强能力，可获取最新知识和资讯，用于有时效性的创作需求。官方还提到，它在知识推理、信息可视化、图片编辑一致性和复杂多主体生成方面都有提升。
+The page is **not** an official Seedream, Doubao, ByteDance, Dreamina, CapCut, or Volcano Engine website. API access, price, commercial terms, supported regions, and official model availability must be verified through official documentation.
 
-火山引擎官网目前也将“豆包图像创作模型 5.0”列为最新模型之一，定位为“更智能可控创作，搭载联网检索”，并展示了文生图、图生图的 API 入口与价格信息。
+## Public source notes
 
-## Seedream 5.0 Pro 的四个核心升级
+Useful reference pages inspected for the launch copy:
 
-### 1. 交互式精准编辑
+- ByteDance Seedream 5.0 Lite: <https://seed.bytedance.com/en/seedream5_0_lite>
+- ByteDance Seedream 4.0: <https://seed.bytedance.com/en/seedream4_0>
+- Dreamina Seedream 5.0 Pro: <https://dreamina.capcut.com/seedream/seedream-5-0-pro>
+- Volcano Engine image generation docs: <https://www.volcengine.com/docs/82379/1541523>
 
-Seedream 5.0 Pro 最值得关注的能力是交互式编辑。用户不需要把所有修改意图都压进一句 Prompt，而是可以直接在图上画箭头、圈选区域、框出局部，再让模型理解操作意图并完成修改。
+## Files
 
-这类能力对真实设计工作很关键。广告图、家装效果图、海报和产品图通常都不是一次生成就结束，而是经历多轮调整：改灯光、换材质、移动主体、重排版式、替换局部文案。交互式编辑的意义在于把 AI 从“抽卡式生成”变成“可持续修改的设计助手”。
+- `index.html` - English-first SEO landing page, queue demo, capability sections, source notes, FAQ, and waitlist form.
+- `waitlist.html` - standalone waitlist page that accepts `queue`, `prompt`, and `source` URL parameters.
+- `assets/seedream-interface-hero.jpg` - local hero/media image generated for the page and compressed for GitHub Pages.
+- `robots.txt` - crawl policy and sitemap pointer.
+- `sitemap.xml` - homepage, waitlist, and README URLs.
+- `CNAME` - custom domain for GitHub Pages.
+- `google6f7d8765f4c7bf70.html` - existing Google Search Console verification file.
 
-### 2. 多图层分离
+## Backend upgrade path
 
-Seedream 5.0 Pro 支持通过提示词或框选指定任意区域、任意粒度的内容进行拆层。这个粒度可以小到一行字、一个字，也可以大到某个物体或整块版面。
+For true server-side storage, create one endpoint such as:
 
-对设计师来说，拆层能力意味着生成结果不再是一张难以二次编辑的扁平图片。标题、人物、产品、背景、装饰元素、按钮、信息区块都可以被独立处理，后续可进行拖拽、缩放、替换和重排。
+```http
+POST /api/waitlist
+Content-Type: application/json
+```
 
-这会显著提升 AI 设计图进入真实生产流程的概率，因为很多团队最终还需要在 Figma、PPT、Photoshop、网页或电商后台里继续加工。
+Suggested fields:
 
-### 3. 高密度信息表达
+```json
+{
+  "email": "user@example.com",
+  "role": "Designer",
+  "scenario": "Advertising creative",
+  "message": "Describe the workflow",
+  "queue_position": 214,
+  "source": "queue-demo",
+  "created_at": "2026-07-08T00:00:00.000Z"
+}
+```
 
-AI 图片过去更擅长氛围图和单一主体，但在复杂信息表达上容易出错。Seedream 5.0 Pro 强调高密度信息表达能力，能够呈现精细图表、多层结构，甚至整页 PPT 级别的信息画面。
+Do not put API keys or database credentials in GitHub Pages static files. Use environment variables in a serverless function or backend service.
 
-这意味着它更适合以下场景：
+## Local preview
 
-- 知识绘本与科普图解
-- 商业报告和演示文稿配图
-- 电商网页与商品卖点可视化
-- 多模块活动页和广告落地页
-- 教育内容中的结构图、流程图和概念图
+```bash
+cd /Users/chinamanor/Downloads/cursor/doubao-seedream-5pro
+python3 -m http.server 8765
+```
 
-如果这项能力稳定，Seedream 5.0 Pro 的价值会从“做一张好看的图”扩展到“把复杂知识变成可读的视觉页面”。
-
-### 4. 原生多语种文字生成
-
-图片中文字一直是生成模型的难点。Seedream 5.0 Pro 宣称原生支持英语、西班牙语、阿拉伯语、日语、韩语等 10 余种文字生成，并能理解不同语言的文化语境、排版习惯和字体形态。
-
-这对跨境电商、国际化广告、本地化海报和多语种产品说明很重要。真正可用的多语种图片生成，不只是把文字拼对，还要让文字和版式、字体、阅读方向、视觉风格匹配。
-
-## 与 Seedream 5.0 Lite 的关系
-
-Seedream 5.0 Lite 更像是 5.0 系列的能力底座展示：它强调深度思考、视觉推理、联网检索、信息可视化、风格迁移和高阶图片编辑。官方资料显示，Lite 已上线即梦 AI、火山方舟体验中心，并在豆包开启内测。
-
-Seedream 5.0 Pro 则把关注点进一步放在专业创作链路上。它不是简单的“更大杯”，而是更强调可控编辑、拆层、复杂版式和商业设计可落地性。
-
-可以这样理解：
-
-| 版本 | 更适合的任务 | 关键能力 |
-| --- | --- | --- |
-| Seedream 5.0 Lite | 日常创作、知识图解、联网热点海报、图像推理 | 深度思考、联网检索、信息可视化、编辑一致性 |
-| Seedream 5.0 Pro | 商业设计、广告图、家装图、复杂页面、PPT 级信息图 | 交互式精准编辑、多图层分离、高密度信息表达、多语种文字生成 |
-
-## 典型使用场景
-
-### 广告创意
-
-营销团队可以先用草图、线稿或简单描述生成海报方向，再通过圈选和箭头逐步修改产品位置、卖点文字、背景氛围和视觉层次。多图层分离可以让素材进入后期设计流程。
-
-### 家居与空间设计
-
-用户可以在房间照片或草图上标出需要调整的位置，例如换沙发、改墙面、加灯光、调整窗帘材质。模型理解局部编辑意图后生成完整效果图。
-
-### PPT 与知识可视化
-
-Seedream 5.0 Pro 的高密度信息表达能力适合把复杂概念转成图解，例如行业链路、产品架构、教学概念、商业数据和趋势分析页。它对“整页 PPT 级别画面”的支持，是办公场景中最值得关注的信号。
-
-### 电商页面
-
-电商详情页需要产品图、卖点拆解、材质展示、场景化图、规格表和促销视觉。多图层和多语种能力可以帮助商家更快生成不同市场版本的页面素材。
-
-### 跨境内容本地化
-
-多语种文字生成如果足够稳定，可以减少海报和商品图本地化中的返工，尤其适合跨境广告、社媒投放和海外电商活动页。
-
-## 使用建议
-
-1. 先明确画面用途：海报、PPT、商品图、空间设计还是科普图解。
-2. 尽量提供草图、线稿或参考图，让模型有明确结构。
-3. 对复杂页面分步生成，不要一次塞入所有需求。
-4. 先确定布局，再做文字、配色、材质和细节。
-5. 对商业物料保留人工审核，尤其是品牌 Logo、价格、法律声明和多语言文案。
-
-## 值得注意的边界
-
-截至 2026-07-04，公开资料显示 Seedream 5.0 Pro 已在 2026 年 6 月 23 日火山引擎 FORCE 原动力大会上发布，并被报道为“即将在近期正式上线”。因此，如果你要接入 API 或做生产环境评估，应以火山方舟控制台和官方模型列表为准。
-
-另外，图像模型生成的文字、图表、数据和品牌元素仍需要人工校验。联网检索能增强时效性，但不等于天然保证事实完全正确；商业发布前仍应检查版权、商标、价格、数据来源和合规风险。
-
-## 总结
-
-Seedream 5.0 Pro 的重要性，不在于它又多了一个“更会画”的模型标签，而在于它试图把 AI 图像创作从一次性生成推进到可编辑、可拆层、可排版、可交付的工作流。
-
-如果它的交互式编辑和多图层分离能力在正式上线后表现稳定，它会更像设计生产链路中的“视觉 Copilot”：先快速生成方向，再通过自然语言和视觉标注反复打磨，最后把素材带入真实设计工具和业务页面。
-
-## 资料来源
-
-- ByteDance Seed：Seedream 5.0 Lite 发布说明  
-  https://seed.bytedance.com/zh/blog/deeper-thinking-more-accurate-generation-introducing-seedream-5-0-lite
-- ByteDance Seed：Seedream 5.0 Lite 模型页  
-  https://seed.bytedance.com/en/seedream5_0_lite
-- 火山引擎官网：最新模型与豆包图像创作模型 5.0  
-  https://www.volcengine.com/
-- 新浪科技 / 快科技：豆包图像创作模型 Seedream 5.0 Pro 发布  
-  https://finance.sina.com.cn/tech/roll/2026-06-23/doc-iniekqur9761230.shtml
+Open <http://localhost:8765/>.
