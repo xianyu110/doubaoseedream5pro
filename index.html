@@ -48,7 +48,7 @@
         {
           "@type": "Question",
           "name": "How does the queue work?",
-          "acceptedAnswer": {"@type": "Answer", "text": "The queue is a front-end MVP simulation used to validate demand. It does not run real image generation. Joining the waitlist records your intent locally and prepares an email submission."}
+          "acceptedAnswer": {"@type": "Answer", "text": "The queue is a front-end MVP simulation used to validate demand. It does not run real image generation. Joining the waitlist can write your intent to a Supabase table when configured, with local and email fallback."}
         },
         {
           "@type": "Question",
@@ -713,6 +713,18 @@
       font-size: 12px;
     }
 
+    .form-receipt {
+      display: none;
+      margin-top: 14px;
+      padding: 13px;
+      border-radius: var(--radius);
+      color: #dff7e8;
+      background: rgba(17, 185, 100, .12);
+      font-size: 13px;
+    }
+
+    .form-receipt.show { display: block; }
+
     .sources-faq {
       display: grid;
       grid-template-columns: minmax(0, .62fr) minmax(0, .9fr);
@@ -984,7 +996,7 @@
           <div class="waitlist-copy">
             <div>
               <h3>What we collect</h3>
-              <p>The form captures email, role, scenario, prompt intent, queue position, and timestamp in your browser before preparing an email submission. A server-side database can be connected later with a form endpoint.</p>
+              <p>The form captures email, role, scenario, prompt intent, queue position, and timestamp. It writes to Supabase when configured, with browser backup and email fallback.</p>
             </div>
             <div class="intent-list">
               <div><strong>Market signal</strong><span>How many visitors care enough to leave an email.</span></div>
@@ -994,7 +1006,7 @@
           </div>
           <form class="waitlist-panel" id="waitlistForm" action="mailto:hello@doubaoseedream5pro.cc" method="post" enctype="text/plain">
             <h3>Join Waitlist</h3>
-            <p>Static fallback: your submission is saved locally and then opened as an email draft.</p>
+            <p>Backend-ready: submissions go to Supabase when configured, and fall back to local backup plus email draft.</p>
             <div class="form-grid">
               <label>Email<input type="email" name="email" placeholder="you@example.com" required></label>
               <label>Role<select name="role" required><option value="">Select one</option><option>Designer</option><option>Marketing / growth</option><option>E-commerce seller</option><option>Founder / indie hacker</option><option>Developer / API builder</option><option>Content creator</option></select></label>
@@ -1005,6 +1017,7 @@
               <button class="button light" type="submit">Submit demand</button>
             </div>
             <div class="form-note">Do not submit secrets, private customer data, API keys, or confidential links.</div>
+            <div class="form-receipt" id="formReceipt" role="status" aria-live="polite"></div>
           </form>
         </div>
       </div>
@@ -1029,7 +1042,7 @@
           <details open><summary>What is Seedream 5.0 Pro?</summary><p>Dreamina presents Seedream 5.0 Pro as an image model for prompt-based creation and editing workflows. This page focuses on how to evaluate that direction for real design work: local edits, layered handoff, dense layouts, and multilingual creative assets.</p></details>
           <details><summary>Is this an official website?</summary><p>No. This is an independent MVP waitlist and research page. It is not affiliated with ByteDance, Doubao, Volcano Engine, Dreamina, or CapCut.</p></details>
           <details><summary>How does the queue work?</summary><p>The queue is simulated in the browser. It is useful for validating interest and guiding future product decisions, but it does not perform real image generation.</p></details>
-          <details><summary>Can this store waitlist entries in a real backend?</summary><p>Yes, but GitHub Pages cannot safely run server-side storage by itself. The next step is connecting a form endpoint such as Supabase Edge Functions, Formspree, Airtable, Google Forms, or a small serverless API.</p></details>
+          <details><summary>Can this store waitlist entries in a real backend?</summary><p>Yes. The waitlist can write to a Supabase insert-only table with a public anon key and RLS. Without configuration, it keeps the local backup and email fallback.</p></details>
         </article>
       </div>
     </section>
@@ -1050,12 +1063,18 @@
     </div>
   </footer>
 
+  <script src="assets/waitlist-config.js"></script>
   <script>
     const promptInput = document.getElementById('promptInput');
     const queueJoin = document.getElementById('queueJoin');
     const queuePositionEl = document.getElementById('queuePosition');
     const waitTimeEl = document.getElementById('waitTime');
     const formQueuePosition = document.getElementById('formQueuePosition');
+    const waitlistBackend = window.SEEDREAM_WAITLIST_BACKEND || {
+      supabaseUrl: '',
+      supabaseAnonKey: '',
+      tableName: 'waitlist_entries'
+    };
 
     function calculateQueue(prompt) {
       const text = prompt || '';
@@ -1086,13 +1105,115 @@
     promptInput.addEventListener('input', updateQueue);
     updateQueue();
 
-    document.getElementById('waitlistForm').addEventListener('submit', (event) => {
+    const waitlistForm = document.getElementById('waitlistForm');
+    const formReceipt = document.getElementById('formReceipt');
+    const waitlistSubmitButton = waitlistForm.querySelector('button[type="submit"]');
+
+    function hasSupabaseConfig() {
+      return waitlistBackend.supabaseUrl.startsWith('https://')
+        && waitlistBackend.supabaseAnonKey.length > 20
+        && waitlistBackend.tableName.length > 0;
+    }
+
+    function saveLocalBackup(data, status) {
+      let entries = [];
+      try {
+        entries = JSON.parse(localStorage.getItem('seedream_waitlist_entries') || '[]');
+      } catch (error) {
+        entries = [];
+      }
+      const nextEntry = { ...data, storage_status: status, updated_at: new Date().toISOString() };
+      const existingIndex = entries.findIndex((entry) => entry.client_id === data.client_id);
+      if (existingIndex >= 0) {
+        entries[existingIndex] = nextEntry;
+      } else {
+        entries.push(nextEntry);
+      }
+      localStorage.setItem('seedream_waitlist_entries', JSON.stringify(entries));
+    }
+
+    function showReceipt(message) {
+      formReceipt.textContent = message;
+      formReceipt.classList.add('show');
+    }
+
+    function openEmailFallback(data) {
+      const subject = encodeURIComponent('Seedream 5.0 Pro waitlist request');
+      const body = encodeURIComponent([
+        `Email: ${data.email}`,
+        `Role: ${data.role}`,
+        `Scenario: ${data.scenario}`,
+        `Queue position: ${data.queue_position}`,
+        `Source: ${data.source}`,
+        `Created at: ${data.created_at}`,
+        '',
+        data.message || ''
+      ].join('\n'));
+      window.location.href = `mailto:hello@doubaoseedream5pro.cc?subject=${subject}&body=${body}`;
+    }
+
+    async function submitToSupabase(data) {
+      const endpoint = `${waitlistBackend.supabaseUrl.replace(/\/$/, '')}/rest/v1/${encodeURIComponent(waitlistBackend.tableName)}`;
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          apikey: waitlistBackend.supabaseAnonKey,
+          Authorization: `Bearer ${waitlistBackend.supabaseAnonKey}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify({
+          email: data.email,
+          client_id: data.client_id,
+          role: data.role,
+          scenario: data.scenario,
+          message: data.message || null,
+          queue_position: Number(data.queue_position),
+          source: data.source,
+          page_url: window.location.href,
+          user_agent: navigator.userAgent
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Supabase insert failed: ${response.status}`);
+      }
+    }
+
+    waitlistForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
       const form = event.currentTarget;
       const data = Object.fromEntries(new FormData(form).entries());
+      data.client_id = window.crypto && typeof window.crypto.randomUUID === 'function'
+        ? window.crypto.randomUUID()
+        : String(Date.now()) + '-' + Math.random().toString(16).slice(2);
       data.created_at = new Date().toISOString();
-      const entries = JSON.parse(localStorage.getItem('seedream_waitlist_entries') || '[]');
-      entries.push(data);
-      localStorage.setItem('seedream_waitlist_entries', JSON.stringify(entries));
+      saveLocalBackup(data, hasSupabaseConfig() ? 'pending_backend' : 'local_email_fallback');
+
+      if (!hasSupabaseConfig()) {
+        showReceipt('Saved locally. Backend is not configured yet, so an email draft will open with the same details.');
+        openEmailFallback(data);
+        return;
+      }
+
+      waitlistSubmitButton.disabled = true;
+      waitlistSubmitButton.textContent = 'Saving...';
+
+      try {
+        await submitToSupabase(data);
+        saveLocalBackup(data, 'backend_saved');
+        showReceipt('Saved to the waitlist database. You are on the private queue.');
+        form.reset();
+        updateQueue();
+      } catch (error) {
+        console.error(error);
+        saveLocalBackup(data, 'backend_failed_email_fallback');
+        showReceipt('Backend save failed. Saved locally and opening an email fallback with the same details.');
+        openEmailFallback(data);
+      } finally {
+        waitlistSubmitButton.disabled = false;
+        waitlistSubmitButton.textContent = 'Submit demand';
+      }
     });
   </script>
 </body>
