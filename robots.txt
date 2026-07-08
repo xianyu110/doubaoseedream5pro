@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://doubaoseedream5pro.cc/sitemap.xml
+Sitemap: https://xianyu110.github.io/doubaoseedream5pro/sitemap.xml

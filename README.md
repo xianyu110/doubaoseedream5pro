@@ -1,16 +1,16 @@
 # Seedream 5.0 Pro Waitlist MVP
 
 Updated: 2026-07-08<br>
-Canonical site: <https://doubaoseedream5pro.cc/>
+Canonical site: <https://xianyu110.github.io/doubaoseedream5pro/>
 
 This repository hosts a static GitHub Pages MVP for the keyword **Seedream 5.0 Pro**. The site is intentionally built as a demand-validation page: a polished product experience, a simulated private queue, and a real waitlist-intent capture flow that can later be connected to a backend form endpoint.
 
 ## Live pages
 
-- Landing page: <https://doubaoseedream5pro.cc/>
-- Waitlist page: <https://doubaoseedream5pro.cc/waitlist.html>
-- Sitemap: <https://doubaoseedream5pro.cc/sitemap.xml>
-- Robots: <https://doubaoseedream5pro.cc/robots.txt>
+- Landing page: <https://xianyu110.github.io/doubaoseedream5pro/>
+- Waitlist page: <https://xianyu110.github.io/doubaoseedream5pro/waitlist.html>
+- Sitemap: <https://xianyu110.github.io/doubaoseedream5pro/sitemap.xml>
+- Robots: <https://xianyu110.github.io/doubaoseedream5pro/robots.txt>
 
 ## MVP strategy
 
